@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Transaction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #f0f2f5, #e0eafc);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 60px auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        form label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+            background-color: #fdfdfd;
+        }
+
+        input[type="radio"] {
+            margin-right: 8px;
+            margin-left: 15px;
+        }
+
+        .error {
+            color: #e74c3c;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-top: 25px;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background-color: #27ae60;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #1e8449;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Add New Transaction</h2>
+    <form th:action="@{/transactions/add}" th:object="${transaction}" method="post">
+
+        <label>Customer Name:</label>
+        <input type="text" th:field="*{customer.name}" required />
+        <div th:if="${#fields.hasErrors('customer.name')}" th:errors="*{customer.name}"></div>
+
+        <label>Service Type:</label>
+        <input type="radio" th:field="*{serviceType}" value="Land" />Land
+        <input type="radio" th:field="*{serviceType}" value="House and Land" />House and Land
+
+        <label>Date:</label>
+        <input type="date" th:field="*{transactionDate}" required />
+        <div th:if="${#fields.hasErrors('transactionDate')}" th:errors="*{transactionDate}" class="error"></div>
+
+        <label>Price (VND/m²):</label>
+        <input type="number" th:field="*{price}" />
+        <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error"></div>
+
+        <label>Area (m²):</label>
+        <input type="number" th:field="*{area}" />
+        <div th:if="${#fields.hasErrors('area')}" th:errors="*{area}" class="error"></div>
+
+        <button type="submit">Save</button>
+    </form>
+</div>
+
+</body>
+</html>
