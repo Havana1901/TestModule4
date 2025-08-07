@@ -97,29 +97,27 @@
 <div class="container">
     <h2>Transaction Detail</h2>
 
+
     <div class="detail-item">
-        <strong>ID:</strong> <span th:text="${transaction.id}">ID</span>
+        <strong>Customer:</strong> <span th:text="${transaction.customer.name}"></span>
     </div>
     <div class="detail-item">
-        <strong>Customer:</strong> <span th:text="${transaction.customer.name}">Customer Name</span>
+        <strong>Phone:</strong> <span th:text="${transaction.customer.phone}"></span>
     </div>
     <div class="detail-item">
-        <strong>Phone:</strong> <span th:text="${transaction.customer.phone}">Phone</span>
+        <strong>Email:</strong> <span th:text="${transaction.customer.email}"></span>
     </div>
     <div class="detail-item">
-        <strong>Email:</strong> <span th:text="${transaction.customer.email}">Email</span>
+        <strong>Type:</strong> <span th:text="${transaction.serviceType}"></span>
     </div>
     <div class="detail-item">
-        <strong>Type:</strong> <span th:text="${transaction.serviceType}">Type</span>
+        <strong>Date:</strong> <span th:text="${transaction.transactionDate}"></span>
     </div>
     <div class="detail-item">
-        <strong>Date:</strong> <span th:text="${transaction.transactionDate}">2025-08-07</span>
+        <strong>Price:</strong> <span th:text="${transaction.price}"></span>
     </div>
     <div class="detail-item">
-        <strong>Price:</strong> <span th:text="${transaction.price}">$1,000,000</span>
-    </div>
-    <div class="detail-item">
-        <strong>Area:</strong> <span th:text="${transaction.area}">120m²</span>
+        <strong>Area:</strong> <span th:text="${transaction.area}"></span>
     </div>
 
     <div class="buttons">
